@@ -1,0 +1,6 @@
+#objects files
+*.o
+
+*.exe
+
+*.user
