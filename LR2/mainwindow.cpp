@@ -18,23 +18,25 @@ MainWindow::~MainWindow()
 void MainWindow::on_solveButton_clicked()
 {
     bool isOk = true;
-    int n = ui->nPolynomEdit->text().toInt(&isOk);
     double x = ui->xEdit->text().toDouble(&isOk);
 
-    if (n < 1) isOk = false;
     if (!isOk) {
         QMessageBox::warning(this, "Неверные данные", "Вы оставили одно из полей пустым или ввели неверные данные");
     } else if (this->data.GetSize() == 0) {
         QMessageBox::warning(this, "Не загружены данные", "Необходимо загрузить данные");
         isOk = false;
-    } else if (this->data.GetSize() < n + 1) {
-        QMessageBox::warning(this, "Неверное количество точек", "Недостаточное количество точек для введеного порядка");
+    }
+    if (this->data.GetSize() < 2) {
+        QMessageBox::warning(this, "Мало точек", "Необходимо 2 или больше точки");
         isOk = false;
     }
     if (!isOk) return;
-    int left, right;
-    ui->answerLabel->setText("Y(X) = " + QString::number(solve(&this->data, n, x, left, right), 'e', 4));
-    showUsedData(left, right);
+    double a, b, c, d;
+    int line;
+    ui->answerLabel->setText("Y(X) = " + QString::number(solve(&this->data, x, a, b, c, d, line), 'e', 4));
+    ui->tableWidget->clearSelection();
+    ui->tableWidget->selectRow(line);
+    ui->polLabel->setText("P(X)=" + QString::number(a,'f',1) + "+" + QString::number(b,'f',1) + "(x - xi)+" + QString::number(c,'f',1) + "(x-xi)^2+" + QString::number(d,'f',1) + "(x-xi)^3");
 }
 
 void MainWindow::fullfilTable()

@@ -2,14 +2,13 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <QTimer>
-#include <QDebug>
 #include <QMessageBox>
-#include <QFileDialog>
 
-#include <algorithm>
+#include <vector>
+#include <utility>
+#include <iostream>
 
-#include "aproxymation.h"
+#include "sollution.h"
 
 namespace Ui {
 class MainWindow;
@@ -24,19 +23,17 @@ public:
     ~MainWindow();
 
 private slots:
+    void on_pushButton_clicked();
+
     void on_solveButton_clicked();
 
-    void fullfilTable();
-
-    void on_action_triggered();
-
-    void showUsedData(int left, int right);
-
-    void on_pushButton_clicked();
+    void showTable();
+    void selectNodes(int r1, int c1, int r2, int c2);
 
 private:
     Ui::MainWindow *ui;
-    CData data;
+    bool isGenerated;
+    data_t data;
 };
 
 #endif // MAINWINDOW_H

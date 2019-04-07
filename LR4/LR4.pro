@@ -1,6 +1,6 @@
 #-------------------------------------------------
 #
-# Project created by QtCreator 2019-02-25T14:24:56
+# Project created by QtCreator 2019-04-02T16:51:48
 #
 #-------------------------------------------------
 
@@ -8,7 +8,7 @@ QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-TARGET = LR1
+TARGET = LR4
 TEMPLATE = app
 
 # The following define makes your compiler emit warnings if you use
@@ -26,12 +26,11 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
-    aproxymation.cpp
+    datareader.cpp
 
 HEADERS += \
         mainwindow.h \
-    aproxymation.h
+    datareader.h
 
 FORMS += \
         mainwindow.ui
-

@@ -2,14 +2,11 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <QTimer>
-#include <QDebug>
 #include <QMessageBox>
 #include <QFileDialog>
+#include <QGraphicsView>
 
-#include <algorithm>
-
-#include "aproxymation.h"
+#include "datareader.h"
 
 namespace Ui {
 class MainWindow;
@@ -24,19 +21,15 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_solveButton_clicked();
-
-    void fullfilTable();
+    void setup_table();
+    void on_pushButton_clicked();
 
     void on_action_triggered();
-
-    void showUsedData(int left, int right);
-
-    void on_pushButton_clicked();
+    void plot(QGraphicsScene &scene, data_t &data, int type = 0);
 
 private:
     Ui::MainWindow *ui;
-    CData data;
+    data_t data;
 };
 
 #endif // MAINWINDOW_H
